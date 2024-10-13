@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    body{
+        @apply bg-[#fffbee]
+    }
+}
+
+@layer components {
+    .tab{
+        @apply w-full h-10 rounded-t-lg text-base text-gray-300 lg:text-lg
+    }
+    .tab-active{
+        @apply bg-primary text-white
+    }
+}
