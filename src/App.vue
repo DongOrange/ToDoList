@@ -28,6 +28,14 @@ const delItem = (index) => {
   list.value.splice(index,1)
 };
 
+const selectAll = ref(false);
+
+const toggleAll = (isCheck) =>{
+  list.value.forEach(item => {
+    item.isFinish = isCheck;
+  })
+};
+
 </script>
 
 <template>
@@ -39,7 +47,7 @@ const delItem = (index) => {
     </div>
 
     <div class="mb-5 flex justify-end gap-4 lg:mb-10">
-      <label class="text-sm lg:text-base"><input type="checkbox" aria-label="全選"> 全選</label>
+      <label class="text-sm lg:text-base"><input v-model="selectAll" @change="toggleAll(selectAll)" type="checkbox" aria-label="全選"> 全選</label>
     </div>
 
     <div class="mb-10 border-b-2 border-primary lg:mb-20">
