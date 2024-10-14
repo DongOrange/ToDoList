@@ -15,4 +15,15 @@
     .tab-active{
         @apply bg-primary text-white
     }
+    .close-btns {
+        @apply relative
+    } 
+    .close-btns::before {
+        content: '';
+        @apply block absolute inset-0 m-auto h-1 w-3/6 bg-white rotate-45;
+    } 
+    .close-btns::after {
+        content: '';
+        @apply block absolute inset-0 m-auto h-1 w-3/6 bg-white -rotate-45;
+    }
 }

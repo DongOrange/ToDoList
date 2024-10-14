@@ -1,4 +1,10 @@
 <script setup>
+import { ref } from 'vue'
+
+const list = ref([
+  { title: '倒垃圾', isFinish: false },
+  { title: '擦窗戶', isFinish: false },
+]);
 
 </script>
 
@@ -26,12 +32,12 @@
       <div class="mb-10">
         <h2 class="w-fit bg-gray-100 text-sm py-1 px-4 rounded-full text-gray-400 lg:text-base">未完成</h2>
         <ul>
-          <template>
-            <li class="border-b border-gray-300 px-0 py-5 flex lg:p-5">
+          <template v-for="item in list">
+            <li v-if="item.isFinish === false" class="border-b border-gray-300 px-0 py-5 flex lg:p-5">
               <div class="flex flex-1 items-center">
                 <label class="flex gap-3 lg:gap-5">
-                  <input type="checkbox">
-                  <span class="text-lg">倒垃圾</span>
+                  <input type="checkbox" v-model="item.isFinish">
+                  <span class="text-lg">{{ item.title }}</span>
                 </label>
               </div>
               <div class="w-6 lg:w-8">
@@ -42,15 +48,15 @@
         </ul>
       </div>
   
-      <div  class="mb-10">
+      <div class="mb-10">
         <h2 class="w-fit bg-primary text-sm py-1 px-4 rounded-full text-white lg:text-base">已完成</h2>
         <ul>
-          <template>
-            <li class="border-b border-gray-300 px-0 py-5 flex lg:p-5">
+          <template v-for="item in list">
+            <li v-if="item.isFinish === true" class="border-b border-gray-300 px-0 py-5 flex lg:p-5">
               <div class="flex flex-1 items-center">
                 <label class="flex gap-3 lg:gap-5">
-                  <input type="checkbox">
-                  <span class="text-lg">擦窗戶</span>
+                  <input type="checkbox" v-model="item.isFinish">
+                  <span class="text-lg">{{ item.title }}</span>
                 </label>
               </div>
               <div class="w-6 lg:w-8">
@@ -65,17 +71,5 @@
 </template>
 
 <style scoped>
-.close-btns {
-  position: relative;
-}
 
-.close-btns::before {
-  content: '';
-  @apply absolute inset-0 m-auto h-1 w-3/6 bg-white rotate-45;
-}
-
-.close-btns::after {
-  content: '';
-  @apply absolute inset-0 m-auto h-1 w-3/6 bg-white -rotate-45;
-}
 </style>
