@@ -577,6 +577,13 @@ body {
   }
 }
 
+.tab-active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(65 183 131 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
 .close-btns {
   position: relative;
 }
@@ -656,6 +663,10 @@ body {
 
 .flex-1 {
   flex: 1 1 0%;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .items-center {
