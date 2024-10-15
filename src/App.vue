@@ -1,40 +1,76 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
+//頁籤預設第1個
 const currentTab = ref(0);
+
+//有三種狀態的頁籤
 const tabs = ref([
   { title: '全部' },
   { title: '已完成' },
   { title: '未完成' },
 ]);
 
-const list = ref([
-  { title: '倒垃圾', isFinish: false },
-  { title: '擦窗戶', isFinish: false },
-]);
+//項目初始值為0個
+const list = ref([]);
 
+//用來獲取新項目
 const newItem = ref('');
 
+//儲存本地資料
+const saveItem = () => {
+  localStorage.setItem('todolist', JSON.stringify(list.value));
+  localStorage.setItem('selectAll', JSON.stringify(selectAll.value));
+}
+
+//取得本地資料
+const getItem = () => {
+  const getSaveItem = localStorage.getItem('todolist');
+  const getSelectAll = localStorage.getItem('selectAll');
+  if(getSaveItem){
+    list.value = JSON.parse(getSaveItem);
+  } else {
+    list.value = [];
+  }
+
+  if (getSelectAll) {
+    selectAll.value = JSON.parse(getSelectAll);
+  } else {
+    selectAll.value = false;
+  }
+}
+
+//新增項目
 const addNewItem = () => {
   if( newItem.value === '' ) return
   list.value.unshift({
     title:newItem.value,
     isFinish:false,
   })
-  newItem.value = ''
+  newItem.value = '';
+  saveItem();
 };
 
+//刪除項目
 const delItem = (index) => {
-  list.value.splice(index,1)
+  list.value.splice(index,1);
+  saveItem();
 };
 
+//全選預設為false
 const selectAll = ref(false);
 
-const toggleAll = (isCheck) =>{
-  list.value.forEach(item => {
-    item.isFinish = isCheck;
+//全選開關
+const toggleAll = (isCheck) => {
+  list.value.forEach( item => {
+    item.isFinish = isCheck
   })
+  saveItem();
 };
+
+
+//瀏覽器加載完執行
+onMounted(getItem);
 
 </script>
 
@@ -64,7 +100,7 @@ const toggleAll = (isCheck) =>{
             <li v-if="item.isFinish === false" class="border-b border-gray-300 px-0 py-5 flex lg:p-5">
               <div class="flex flex-1 items-center">
                 <label class="flex gap-3 lg:gap-5">
-                  <input type="checkbox" v-model="item.isFinish">
+                  <input type="checkbox" v-model="item.isFinish" @change="saveItem">
                   <span class="text-lg">{{ item.title }}</span>
                 </label>
               </div>
@@ -83,7 +119,7 @@ const toggleAll = (isCheck) =>{
             <li v-if="item.isFinish === true" class="border-b border-gray-300 px-0 py-5 flex lg:p-5">
               <div class="flex flex-1 items-center">
                 <label class="flex gap-3 lg:gap-5">
-                  <input type="checkbox" v-model="item.isFinish">
+                  <input type="checkbox" v-model="item.isFinish" @change="saveItem">
                   <span class="text-lg">{{ item.title }}</span>
                 </label>
               </div>
@@ -94,6 +130,7 @@ const toggleAll = (isCheck) =>{
           </template>
         </ul>
       </div>
+
     </div>
   </main>
 </template>
