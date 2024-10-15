@@ -78,7 +78,7 @@ onMounted(getItem);
   <main class="w-full p-5 pb-10 bg-white shadow-xl rounded-xl lg:rounded-3xl lg:p-10">
     <h1 class="text-2xl font-bold text-center mb-10 text-primary lg:text-4xl">To Do List</h1>
     <div class="flex gap-2 mb-10 lg:gap-5 lg:mb-20">
-      <div class="flex-1"><input v-model="newItem" @keydown.enter="addNewItem()" type="text" aria-label="新增任務" class="w-full h-8 text-base border border-gray-300 rounded-md px-2 lg:text-lg lg:h-12 lg:px-5 lg:rounded-lg" placeholder="請輸入任務名稱"></div>
+      <div class="flex-1"><input v-model="newItem" @keydown.enter="addNewItem()" type="text" aria-label="新增任務" class="w-full h-8 text-base border border-gray-300 rounded-md px-2 lg:text-lg lg:h-12 lg:px-5 lg:rounded-lg" placeholder="請輸入代辦事項名稱"></div>
       <div class="w-14 lg:w-24"><button @click="addNewItem()" class="w-full bg-primary text-white text-base h-8 rounded-md lg:rounded-lg lg:text-lg lg:h-12">新增</button></div>
     </div>
 
@@ -109,7 +109,7 @@ onMounted(getItem);
             </li>
           </template>
         </ul>
-        <div v-else class="w-full h-16 mt-2 flex justify-center items-center bg-[#f8f8f8] rounded-xl text-gray-400 mt-3">沒有任務清單</div>
+        <div v-else class="w-full h-16 mt-2 flex justify-center items-center bg-[#f8f8f8] rounded-xl text-gray-400 mt-3">沒有代辦清單</div>
       </div>
   
       <div v-if="currentTab === 1 || currentTab === 0" class="mb-10">
@@ -129,7 +129,7 @@ onMounted(getItem);
             </li>
           </template>
         </ul>
-        <div v-else class="w-full h-16 mt-2 flex justify-center items-center bg-[#f8f8f8] rounded-xl text-gray-400 mt-3">沒有任務清單</div>
+        <div v-else class="w-full h-16 mt-2 flex justify-center items-center bg-[#f8f8f8] rounded-xl text-gray-400 mt-3">沒有代辦清單</div>
       </div>
 
     </div>
