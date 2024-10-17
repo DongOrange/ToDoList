@@ -10,7 +10,7 @@
 
 @layer components {
     .tab{
-        @apply w-full h-10 rounded-t-lg text-base text-gray-300 lg:text-lg
+        @apply w-full h-8 rounded-t-lg text-sm text-gray-300 lg:text-base lg:h-10 lg:text-lg
     }
     .tab-active{
         @apply bg-primary text-white
