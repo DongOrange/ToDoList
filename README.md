@@ -1,29 +1,43 @@
-# todolist
+# ToDoList
 
-This template should help get you started developing with Vue 3 in Vite.
+### 專案說明
+這是一個功能簡單版的ToDoList專案，功能有：
+- 新增代辦事項
+- 刪除代辦事項
+- 是否完成代辦事情
+- 分類頁籤
 
-## Recommended IDE Setup
+輸入代辦事項任務，會把輸入的事項新增在未完成的區塊，點擊該項目的 checkbox 代表完成項目，則會移動到下面完成區塊，每條項目都有刪除按鈕，可將不要的項目做移除。另外有做全選按鈕，點擊可以全選或全不選。
+畫面有做分類頁籤的功能，依照需求去過濾全部、已完成或是未完成列表顯示。然後曾經的紀錄儲存在瀏覽器內，使重新整理頁面不會將已輸入的紀錄消失刷新。
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+## 專案的運行方式
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### 執行專案
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Vite 打包
 
 ```sh
 npm run build
 ```
+
+## 實現思路
+
+首先將基本版型和風格先製作出來，有了基本樣子在後續比較可以想像出功能。
+宣告基本列表的初始內容( title 和是否完成)，利用 for 迴圈將列表一一秀出來，然後把列表再複製一份分成已完成和未完成的兩個區塊，各別在 v-for 迴圈裡面新增 v-if 的判斷，針對是否有完成去判斷對應的列表區塊。
+
+宣告一個變數 newItem 為空字串，用來存放新增列表的資料，在宣告一個變數(函式)來製作新增列表的內容，在 HTML 的輸入框新增 v-model 做雙向綁定，當使用者在裡面輸入文字的時候，newItem 可以做到同步更新，並將 @keydown.enter 也加入，可以做到按下鍵盤的 enter 就可以送出輸入的文字，然後在 button 上新增@click 讓滑鼠點擊按鈕時也可以送出輸入的文字。
+
+宣告一個變數 currentTab 為頁籤的第一個，再宣告頁籤的三種狀態(全部、已完成、未完成)，在 HTML 部分利用 v-for 迴圈產出三種狀態的按鈕並依序給予 index 的排列號碼，當按下該按鈕時，會知道是按下第幾個按鈕並給予 tab-active (當前樣式)，然後連動下方的區塊列表，因為每個區塊有 v-if 去判斷是該排列號碼的話就顯示該區塊，如果排列為 0 的時候則是顯示全部。
+
+全選按鈕，先宣告一個變數用來存放全選的初始狀態是 false ，然後在宣告一個變數(函式)去控制每個項目的狀態，這邊是利用 forEach 去遍歷所有的 checkbox 的狀態，當點擊的時候所有 checkbox 就會是相同的狀態( true 或 false )。
+
+最後 LocalStorage 儲存本地瀏覽器的方法，利用 setItem 和 getItem 去儲存和取得資料，也利用 JSON.stringify 和 JSON.parse 的方法，去將陣列資料轉換為 JSON 字串格式和 JSON 字串轉換為 JavaScript 對象或陣列，以達到重新整理網頁也不會刷新畫面的方法。
