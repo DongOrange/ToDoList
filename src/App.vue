@@ -79,7 +79,7 @@ onMounted(getItem);
     <h1 class="text-2xl font-bold text-center mb-10 text-primary lg:text-4xl">To Do List</h1>
     <div class="flex gap-2 mb-10 lg:gap-5 lg:mb-20">
       <div class="flex-1"><input v-model="newItem" @keydown.enter="addNewItem()" type="text" aria-label="新增任務" class="w-full h-8 text-base border border-gray-300 rounded-md px-2 lg:text-lg lg:h-12 lg:px-5 lg:rounded-lg" placeholder="請輸入代辦事項名稱"></div>
-      <div class="w-16 lg:w-24"><button @click="addNewItem()" class="w-full bg-black text-white text-base h-8 rounded-md lg:rounded-lg lg:text-lg lg:h-12">新增</button></div>
+      <div class="w-16 lg:w-24"><button @click="addNewItem()" class="w-full bg-black text-white text-base h-8 rounded-md lg:rounded-lg lg:text-lg lg:h-12"><i class="fa-regular fa-file-lines"></i> 新增</button></div>
     </div>
 
     <div class="mb-5 flex justify-end gap-4 lg:mb-10">
