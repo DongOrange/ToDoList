@@ -20,10 +20,10 @@
     } 
     .close-btns::before {
         content: '';
-        @apply block absolute inset-0 m-auto h-1 w-3/6 bg-white rotate-45;
+        @apply block absolute inset-0 m-auto h-0.5 w-1/2 bg-white rotate-45 lg:w-3/6 lg:h-1;
     } 
     .close-btns::after {
         content: '';
-        @apply block absolute inset-0 m-auto h-1 w-3/6 bg-white -rotate-45;
+        @apply block absolute inset-0 m-auto h-0.5 w-1/2 bg-white -rotate-45 lg:w-3/6 lg:h-1;
     }
 }
